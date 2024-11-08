@@ -23,6 +23,7 @@ import (
 	"syscall"
 	"time"
 
+	"github.com/jmoiron/sqlx"
 	cron "github.com/robfig/cron/v3"
 
 	"github.com/labstack/echo/v4"
@@ -30,6 +31,7 @@ import (
 
 	"github.com/go-playground/validator/v10"
 
+	"github.com/dimaskiddo/go-whatsapp-multidevice-rest/internal/database"
 	"github.com/dimaskiddo/go-whatsapp-multidevice-rest/pkg/env"
 	"github.com/dimaskiddo/go-whatsapp-multidevice-rest/pkg/log"
 	"github.com/dimaskiddo/go-whatsapp-multidevice-rest/pkg/router"
@@ -40,6 +42,8 @@ import (
 type Server struct {
 	Address string
 	Port    string
+	service database.Service
+	db      *sqlx.DB
 }
 
 type EchoValidator struct {
@@ -113,6 +117,22 @@ func main() {
 	e.HTTPErrorHandler = router.HttpErrorHandler
 	e.GET("/favicon.ico", router.ResponseNoContent)
 
+	// Verify Database Configuration
+	dbType, err := env.GetEnvString("WHATSAPP_DATASTORE_TYPE")
+	if err != nil {
+		log.Print(nil).Fatal(err.Error())
+	}
+	dbConnStr, err := env.GetEnvString("WHATSAPP_DATASTORE_URI")
+	if err != nil || dbConnStr == "" {
+		log.Print(nil).Fatal(err.Error())
+	}
+
+	// Initialize Database
+	db, err := database.NewService(dbType)
+	if err != nil {
+		log.Print(nil).Fatal(err.Error())
+	}
+
 	// Load Internal Routes
 	internal.Routes(e)
 
@@ -124,6 +144,8 @@ func main() {
 
 	// Get Server Configuration
 	var serverConfig Server
+
+	serverConfig.service = db
 
 	serverConfig.Address, err = env.GetEnvString("SERVER_ADDRESS")
 	if err != nil {

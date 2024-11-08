@@ -1,6 +1,8 @@
 module github.com/dimaskiddo/go-whatsapp-multidevice-rest
 
-go 1.22
+go 1.22.0
+
+toolchain go1.22.4
 
 require (
 	github.com/PuerkitoBio/goquery v1.9.2
@@ -19,9 +21,19 @@ require (
 	github.com/sunshineplan/imgconv v1.1.10
 	github.com/swaggo/echo-swagger v1.4.1
 	github.com/swaggo/swag v1.16.3
-	go.mau.fi/whatsmeow v0.0.0-20240821142752-3d63c6fcc1a7
-	google.golang.org/protobuf v1.34.2
+	go.mau.fi/whatsmeow v0.0.0-20241106153717-65ee2390b147
+	google.golang.org/protobuf v1.35.1
 	modernc.org/sqlite v1.17.0
+)
+
+require (
+	github.com/go-sql-driver/mysql v1.8.1 // indirect
+	github.com/jackc/pgpassfile v1.0.0 // indirect
+	github.com/jackc/pgservicefile v0.0.0-20221227161230-091c0ba34f0a // indirect
+	github.com/jackc/pgx/v5 v5.5.5 // indirect
+	github.com/jackc/puddle/v2 v2.2.1 // indirect
+	github.com/jinzhu/inflection v1.0.0 // indirect
+	github.com/jinzhu/now v1.1.5 // indirect
 )
 
 require (
@@ -42,9 +54,10 @@ require (
 	github.com/go-playground/universal-translator v0.18.1 // indirect
 	github.com/golang/snappy v0.0.4 // indirect
 	github.com/google/uuid v1.6.0 // indirect
-	github.com/gorilla/websocket v1.5.0 // indirect
+	github.com/gorilla/websocket v1.5.3 // indirect
 	github.com/hhrutter/lzw v1.0.0 // indirect
 	github.com/hhrutter/tiff v1.0.1 // indirect
+	github.com/jmoiron/sqlx v1.4.0
 	github.com/josharian/intern v1.0.0 // indirect
 	github.com/kballard/go-shellquote v0.0.0-20180428030007-95032a82bc51 // indirect
 	github.com/labstack/gommon v0.4.2 // indirect
@@ -68,17 +81,20 @@ require (
 	github.com/valyala/fasttemplate v1.2.2 // indirect
 	github.com/xi2/xz v0.0.0-20171230120015-48954b6210f8 // indirect
 	go.mau.fi/libsignal v0.1.1 // indirect
-	go.mau.fi/util v0.6.0 // indirect
-	golang.org/x/crypto v0.25.0 // indirect
+	go.mau.fi/util v0.8.1 // indirect
+	golang.org/x/crypto v0.29.0 // indirect
 	golang.org/x/image v0.16.0 // indirect
 	golang.org/x/mod v0.17.0 // indirect
-	golang.org/x/net v0.27.0 // indirect
-	golang.org/x/sync v0.7.0 // indirect
-	golang.org/x/sys v0.22.0 // indirect
-	golang.org/x/text v0.16.0 // indirect
+	golang.org/x/net v0.30.0 // indirect
+	golang.org/x/sync v0.9.0 // indirect
+	golang.org/x/sys v0.27.0 // indirect
+	golang.org/x/text v0.20.0 // indirect
 	golang.org/x/time v0.5.0 // indirect
 	golang.org/x/tools v0.21.1-0.20240508182429-e35e4ccd0d2d // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
+	gorm.io/driver/mysql v1.5.7
+	gorm.io/driver/postgres v1.5.9
+	gorm.io/gorm v1.25.12
 	lukechampine.com/uint128 v1.1.1 // indirect
 	modernc.org/cc/v3 v3.35.26 // indirect
 	modernc.org/ccgo/v3 v3.16.2 // indirect
